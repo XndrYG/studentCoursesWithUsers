@@ -35,4 +35,5 @@ router.get('/register-student', userController.renderStudentRegistrationForm);
 router.post('/register-student', userController.registerStudent);
 
 router.get('/login', userController.renderLoginForm);
+router.post('/login', userController.login);
 module.exports = router;
