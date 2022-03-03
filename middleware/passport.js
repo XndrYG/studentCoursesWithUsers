@@ -10,7 +10,6 @@ async function validateUser(username, password, done){
             password: md5(password)
         }
     });
-    console.log(user)
     if (!user) {
         return done(null, false, {message: 'Invalid Username or Password'});
     }
@@ -34,7 +33,9 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(async function(user, done){
-    const userModel = await User.findByPk(user.id);
+    const userModel = await User.findByPk(user.id, {
+        include: ['student', 'staff']
+    });
     process.nextTick(function(){
         return done(null, userModel);
     });

@@ -31,7 +31,7 @@ module.exports.registerStudent = async function(req, res){
 module.exports.registerStaff = async function(req, res){
     const user = await User.create({
         email: req.body.email,
-        passport:md5(req.body.password),
+        password:md5(req.body.password),
         role: 'staff'
     });
     await Staff.create({
@@ -57,3 +57,9 @@ module.exports.login = passport.authenticate('local', {
     failureRedirect: '/login',
     failureMessage: true
 });
+
+//logout
+module.exports.logout = function(req, res){
+    req.logout();
+    res.redirect('/login');
+}
