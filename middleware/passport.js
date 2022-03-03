@@ -20,7 +20,7 @@ async function validateUser(username, password, done){
 passport.use(
     new Strategy({
             usernameField: 'email',
-            passwordField: 'passport'
+            passwordField: 'password'
         }, validateUser
     )
 );
