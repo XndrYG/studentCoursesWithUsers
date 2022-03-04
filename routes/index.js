@@ -11,8 +11,8 @@ function redirectGuests(req, res, next){
   next();
 };
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res) {
+  res.redirect('/courses');
 });
 
 router.get('/courses', redirectGuests, courseController.viewAll);
@@ -28,8 +28,6 @@ router.get('/students', redirectGuests, studentController.viewAll);
 router.get('/students/profile/:id', redirectGuests, studentController.viewProfile);
 router.get('/students/edit/:id', redirectGuests, studentController.renderEditForm);
 router.post('/students/edit/:id', redirectGuests, studentController.updateStudent);
-router.get('/students/add', redirectGuests, studentController.renderAddForm);
-router.post('/students/add', redirectGuests, studentController.addStudent);
 router.get('/students/delete/:id', redirectGuests, studentController.deleteStudent);
 
 router.post('/students/:studentId/enroll/', redirectGuests, studentController.enrollStudent);
